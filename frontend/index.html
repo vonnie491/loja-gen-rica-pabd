@@ -7,6 +7,13 @@
     <script src="/eel.js"></script>
 </head>
 <body>
-    <button onclick="eel.dizerOi()">Teste</button>
+
+    <input type="text" id="Usuario" placeholder="Usuário">
+
+    <input type="text" id="Senha" placeholder="Senha">
+
+    <button onclick="eel.login(document.getElementById('Usuario').value,document.getElementById('Senha').value)">
+        Teste
+    </button>
 </body>
 </html>

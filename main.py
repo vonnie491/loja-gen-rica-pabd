@@ -1,8 +1,9 @@
 import eel
 
 @eel.expose
-def dizerOi():
-    print('oi')
+def login(usuario,senha):
+    print(usuario)
+    print(senha)
 
 eel.init('frontend')
 
