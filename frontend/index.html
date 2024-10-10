@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,8 +12,19 @@
 
     <input type="text" id="Senha" placeholder="Senha">
 
-    <button onclick="eel.login(document.getElementById('Usuario').value,document.getElementById('Senha').value)">
-        Teste
-    </button>
+    <button onclick="fazerLogin()">Login</button>
+    <button onclick="">Criar conta</button>
+
 </body>
+
+<script>
+    async function fazerLogin() {
+        const usuario = document.getElementById('Usuario').value;
+        const senha = document.getElementById('Senha').value;
+
+        window.location.href = await eel.login(usuario, senha)();
+    }
+    
+</script>
+
 </html>
