@@ -24,7 +24,12 @@
 
         window.location.href = await eel.login(usuario, senha)();
     }
+    async function criarConta() {
+        const usuario = document.getElementById('usuario').value;
+        const senha = document.getElementById('senha').value;
     
+        window.location.href = await eel.conta(usuario, nome)();
+    }
 </script>
 
 </html>
