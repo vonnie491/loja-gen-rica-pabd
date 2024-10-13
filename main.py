@@ -13,7 +13,16 @@ def login(nome,senha):
         if usuario.nome == nome and usuario.senha == senha:
             return 'loja.html'
     return '#'
+    
+def conta(nome, senha):
+	cursor.execute('SELECT * FROM usuarios')
+    listaUsuarios = cursor.fetchall()
 
+    for usuario in listaUsuarios:
+        if usuario.nome == nome and usuario.senha == senha:
+        	return '#'
+        else:
+        	cursor.execute("INSERT INTO conta (nome, senha) VALUES (%s, %s)"(usuario.nome, usuario.senha))
 
 eel.init('frontend')
 
