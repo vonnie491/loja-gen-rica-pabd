@@ -12,8 +12,10 @@
 
     <input type="text" id="Senha" placeholder="Senha">
 
+    <p id="Aviso"></p>
+
     <button onclick="fazerLogin()">Login</button>
-    <button onclick="">Criar conta</button>
+    <button onclick="criarConta()">Criar conta</button>
 
 </body>
 
@@ -22,13 +24,25 @@
         const usuario = document.getElementById('Usuario').value;
         const senha = document.getElementById('Senha').value;
 
-        window.location.href = await eel.login(usuario, senha)();
+        const conta = await eel.login(usuario, senha)();
+
+        if(conta){
+            window.location.href = conta;
+        }else{
+            document.getElementById('Aviso').innerText = 'Usuário não existe'
+        }
+        
     }
     async function criarConta() {
-        const usuario = document.getElementById('usuario').value;
-        const senha = document.getElementById('senha').value;
-    
-        window.location.href = await eel.conta(usuario, nome)();
+        const usuario = document.getElementById('Usuario').value;
+        const senha = document.getElementById('Senha').value;
+        
+        const conta = await eel.criarConta(usuario, senha)();
+        if(conta){
+            document.getElementById('Aviso').innerText = conta
+        }else{
+            document.getElementById('Aviso').innerText = 'Conta criada'
+        }
     }
 </script>
 
