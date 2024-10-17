@@ -15,6 +15,7 @@
     <p id="Aviso"></p>
 
     <button onclick="fazerLogin()">Login</button>
+
     <button onclick="criarConta()">Criar conta</button>
 
 </body>
@@ -37,7 +38,7 @@
         const usuario = document.getElementById('Usuario').value;
         const senha = document.getElementById('Senha').value;
         
-        const conta = await eel.criarConta(usuario, senha)();
+        const conta = await eel.editarUsuario(usuario, senha)();
         if(conta){
             document.getElementById('Aviso').innerText = conta
         }else{
