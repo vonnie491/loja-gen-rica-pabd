@@ -62,6 +62,11 @@ def pegarProdutos():
 def adicionarAoCarrinho(produto:list):
     cursor.execute(f"INSERT INTO compras (comprador, produto, efetivada) VALUES ('{nomeUsuario}','{produto[0]}',False)")
 
+@eel.expose
+def pegarProdutosDoCarrinho():
+    cursor.execute(f"SELECT * FROM compras WHERE comprador='{nomeUsuario}' AND efetivada=False")
+    return cursor.fetchall()
+
 ''''
 tabelas: usuários, produtos e compras
 telas: login, loja, editar_usuario, carrinho

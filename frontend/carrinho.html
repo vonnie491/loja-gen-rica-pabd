@@ -8,5 +8,26 @@
 </head>
 <body>
     <button onclick="window.location.href='loja.html'">Voltar</button>
+
+    <button onclick="carregarCarrinho()" id="vitima">Carregar carrinho</button>
 </body>
+<script>
+    async function carregarCarrinho() {
+        const produtos = await eel.pegarProdutosDoCarrinho()();
+        
+        produtos.forEach((produto) => {
+            const novaDiv = document.createElement('div');
+            novaDiv.style.display = 'flex';
+
+            const novoParagrafo = document.createElement('p');
+            const textoDoParagrafo = document.createTextNode(produto[2]);
+            novoParagrafo.appendChild(textoDoParagrafo);
+
+            novaDiv.appendChild(novoParagrafo);
+
+            document.body.appendChild(novaDiv);
+        });
+        document.getElementById('vitima').remove();
+    }
+</script>
 </html>
