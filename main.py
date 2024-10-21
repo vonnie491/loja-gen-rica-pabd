@@ -67,6 +67,10 @@ def pegarProdutosDoCarrinho():
     cursor.execute(f"SELECT * FROM compras WHERE comprador='{nomeUsuario}' AND efetivada=False")
     return cursor.fetchall()
 
+@eel.expose
+def efetivarCompra(compra):
+    cursor.execute(f'UPDATE compras SET efetivada=True WHERE cod_compra={compra[0]}')
+
 ''''
 tabelas: usuários, produtos e compras
 telas: login, loja, editar_usuario, carrinho

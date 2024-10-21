@@ -13,17 +13,26 @@
 </body>
 <script>
     async function carregarCarrinho() {
-        const produtos = await eel.pegarProdutosDoCarrinho()();
+        const compras = await eel.pegarProdutosDoCarrinho()();
         
-        produtos.forEach((produto) => {
+        compras.forEach((compra) => {
             const novaDiv = document.createElement('div');
             novaDiv.style.display = 'flex';
 
             const novoParagrafo = document.createElement('p');
-            const textoDoParagrafo = document.createTextNode(produto[2]);
+            const textoDoParagrafo = document.createTextNode(compra[2]);
             novoParagrafo.appendChild(textoDoParagrafo);
 
+            const novoBotao = document.createElement('button');
+            const textoDoBotao = document.createTextNode('Efetivar compra');
+            novoBotao.appendChild(textoDoBotao);
+            novoBotao.addEventListener('click',() => {
+                eel.efetivarCompra(compra);
+                novaDiv.remove();
+            });
+
             novaDiv.appendChild(novoParagrafo);
+            novaDiv.appendChild(novoBotao);
 
             document.body.appendChild(novaDiv);
         });
