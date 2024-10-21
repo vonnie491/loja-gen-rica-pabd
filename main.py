@@ -15,7 +15,7 @@ def login(nome,senha):
             return 'loja.html'
     
 @eel.expose    
-def editarUsuario(nome='',senha='',novoNome='',novaSenha='',novoSaldo=''):
+def editarUsuario(nome='',senha='',novoNome='',novaSenha='',novoSaldo='',apagar=False):
     if nome == '' or senha == '':
         return 'Nome ou senha vazios'
     if len(nome) < 5 or len(senha) < 5:
@@ -29,20 +29,36 @@ def editarUsuario(nome='',senha='',novoNome='',novaSenha='',novoSaldo=''):
         if usuario[0] == nome:
             usuarioEncontrado = usuario
 
+    if apagar:
+        if usuarioEncontrado == None:
+            return 'Usuário não encontrado'
+        else:
+            cursor.execute(f"DELETE FROM usuarios WHERE nome='{nome}'")
+            return
+        
     if novoNome or novaSenha or novoSaldo:#Tentando editar
         if usuarioEncontrado:
             novoNome = usuarioEncontrado[0] if novoNome == '' else novoNome
             novaSenha = usuarioEncontrado[1] if novoNome == '' else novaSenha
             novoSaldo = usuarioEncontrado[2] if novoSaldo == '' else usuarioEncontrado[2] + float(novoSaldo)
-            cursor.execute(f'UPDATE usuarios SET nome={novoNome}, senha={novaSenha}, saldo={novoSaldo} WHERE nome={usuarioEncontrado[0]}')
+            cursor.execute(f"UPDATE usuarios SET nome='{novoNome}', senha='{novaSenha}', saldo='{novoSaldo}' WHERE nome='{usuarioEncontrado[0]}'")
         else:
             return 'Usuário não encontrado'
-        
+
     elif nome and senha:#Tentando criar usuário
         if usuarioEncontrado == None:
             cursor.execute(f"INSERT INTO usuarios (nome, senha, saldo) VALUES ('{nome}', '{senha}', 0)")
         else:
             return 'Usuário já existente'
+        
+''''
+tabelas: usuários, produtos e compras
+telas: login, loja, editar_usuario, carrinho
+create: login
+read: loja
+update: editar_usuario
+delete: editar_usuario
+'''
 
 
 eel.init('frontend')

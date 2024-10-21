@@ -16,15 +16,36 @@
 
     <input type="text" id="Saldo" placeholder="Saldo">
 
-    <button onclick="salvar()">Salvar</button>
+    <p id="Aviso"></p>
 
+    <button onclick="salvar()">Salvar</button>
+    <button onclick="apagar()">Apagar</button>
+    <button onclick="window.location.href='loja.html'">Voltar</button>
 </body>
 <script>
     async function salvar() {
+        const usuarioAntigo = document.getElementById('UsuarioAntigo').value;
         const usuario = document.getElementById('Usuario').value;
         const senha = document.getElementById('Senha').value;
         const saldo = document.getElementById('Saldo').value;
-        
+
+        const resultado = await eel.editarUsuario(usuarioAntigo,'aaaaa',usuario,senha,saldo)()
+        if(resultado){
+            document.getElementById('Aviso').innerText = resultado;
+        }else{
+            document.getElementById('Aviso').innerText = 'Usuário alterado com sucesso';
+        }
+    }
+
+    async function apagar() {
+        const usuario = document.getElementById('UsuarioAntigo').value;
+
+        const resultado = await eel.editarUsuario(usuario,'aaaaa','aaaaa','aaaaa','aaaaa',true)()
+        if(resultado){
+            document.getElementById('Aviso').innerText = resultado;
+        }else{
+            document.getElementById('Aviso').innerText = 'Usuário morto com sucesso';
+        }
     }
 </script>
 </html>
