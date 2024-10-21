@@ -4,3 +4,7 @@ CREATE TABLE usuarios(
 	saldo float
 )
 
+CREATE TABLE produtos(
+	nome varchar(20) PRIMARY KEY,
+	preco float
+)

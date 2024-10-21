@@ -11,6 +11,39 @@
     <button onclick="window.location.href='conta.html'">Conta</button>
     <button onclick="window.location.href='carrinho.html'">Carrinho</button>
     
+    <button onclick="carregarProdutos()">Teste de carregamento</button>
     
 </body>
+<script>
+    async function carregarProdutos() {
+       // const produtos = await eel.pegarProdutos();
+       const produtos = [['Produto1',18.5],['Produto2',20]]
+        
+        produtos.forEach((produto) => {
+            const novaDiv = document.createElement('div');
+            novaDiv.style.display = 'flex';
+
+            const novoParagrafo = document.createElement('p');
+            const textoDoParagrafo = document.createTextNode(produto[0]);
+            novoParagrafo.appendChild(textoDoParagrafo);
+
+            const novoBotao = document.createElement('button');
+            const textoDoBotao = document.createTextNode('Adicionar ao carrinho');
+            novoBotao.appendChild(textoDoBotao);
+            novoBotao.addEventListener('click',() => {
+                adicionarAoCarrinho(produto);
+            });
+
+            novaDiv.appendChild(novoParagrafo);
+            novaDiv.appendChild(novoBotao);
+
+            document.body.appendChild(novaDiv);
+        });
+
+    }
+
+    async function adicionarAoCarrinho(produto) {
+        console.log(produto[0]);
+    }
+</script>
 </html>
