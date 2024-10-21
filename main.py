@@ -39,7 +39,7 @@ def editarUsuario(nome='',senha='',novoNome='',novaSenha='',novoSaldo='',apagar=
     if novoNome or novaSenha or novoSaldo:#Tentando editar
         if usuarioEncontrado:
             novoNome = usuarioEncontrado[0] if novoNome == '' else novoNome
-            novaSenha = usuarioEncontrado[1] if novoNome == '' else novaSenha
+            novaSenha = usuarioEncontrado[1] if novaSenha == '' else novaSenha
             novoSaldo = usuarioEncontrado[2] if novoSaldo == '' else usuarioEncontrado[2] + float(novoSaldo)
             cursor.execute(f"UPDATE usuarios SET nome='{novoNome}', senha='{novaSenha}', saldo='{novoSaldo}' WHERE nome='{usuarioEncontrado[0]}'")
         else:
