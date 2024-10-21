@@ -12,6 +12,8 @@ def login(nome,senha):
 
     for usuario in listaUsuarios:
         if usuario[0] == nome and usuario[1] == senha:
+            global nomeUsuario
+            nomeUsuario = nome
             return 'loja.html'
     
 @eel.expose    
@@ -51,6 +53,15 @@ def editarUsuario(nome='',senha='',novoNome='',novaSenha='',novoSaldo='',apagar=
         else:
             return 'Usuário já existente'
         
+@eel.expose
+def pegarProdutos():
+    cursor.execute('SELECT * FROM produtos')
+    return cursor.fetchall()
+
+@eel.expose
+def adicionarAoCarrinho(produto:list):
+    cursor.execute(f"INSERT INTO compras (comprador, produto, efetivada) VALUES ('{nomeUsuario}','{produto[0]}',False)")
+
 ''''
 tabelas: usuários, produtos e compras
 telas: login, loja, editar_usuario, carrinho

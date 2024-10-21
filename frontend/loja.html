@@ -8,16 +8,14 @@
 </head>
 <body>
 
+    <button onclick="carregarProdutos()" id="vitima">Carregar produtos</button>
     <button onclick="window.location.href='conta.html'">Conta</button>
     <button onclick="window.location.href='carrinho.html'">Carrinho</button>
-    
-    <button onclick="carregarProdutos()">Teste de carregamento</button>
     
 </body>
 <script>
     async function carregarProdutos() {
-       // const produtos = await eel.pegarProdutos();
-       const produtos = [['Produto1',18.5],['Produto2',20]]
+        const produtos = await eel.pegarProdutos()();
         
         produtos.forEach((produto) => {
             const novaDiv = document.createElement('div');
@@ -39,11 +37,11 @@
 
             document.body.appendChild(novaDiv);
         });
-
+        document.getElementById('vitima').remove();
     }
 
     async function adicionarAoCarrinho(produto) {
-        console.log(produto[0]);
+        await eel.adicionarAoCarrinho(produto);
     }
 </script>
 </html>
