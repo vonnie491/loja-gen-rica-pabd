@@ -31,7 +31,7 @@ def editarUsuario(nome='',senha='',novoNome='',novaSenha='',novoSaldo='',apagar=
         if usuario[0] == nome:
             usuarioEncontrado = usuario
 
-    if apagar:
+    if apagar:#Tentando apagar
         if usuarioEncontrado == None:
             return 'Usuário não encontrado'
         else:
@@ -70,16 +70,6 @@ def pegarProdutosDoCarrinho():
 @eel.expose
 def efetivarCompra(compra):
     cursor.execute(f'UPDATE compras SET efetivada=True WHERE cod_compra={compra[0]}')
-
-''''
-tabelas: usuários, produtos e compras
-telas: login, loja, editar_usuario, carrinho
-create: login
-read: loja
-update: editar_usuario
-delete: editar_usuario
-'''
-
 
 eel.init('frontend')
 eel.start('index.html')
